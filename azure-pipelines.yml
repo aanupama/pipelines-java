@@ -40,14 +40,8 @@ jobs:
   steps:
   - task: MyTask@1  # this step generates the output variable
     name: ProduceVar  # because we're going to depend on it, we need to name the step
-  - bash: echo $(abstractVariable)
+  - bash: echo $echo $(ProduceVar.MyVar))
   
-- job: B
-  dependsOn: A
-  variables:
-    # map the output variable from A into this job
-    varFromA: $[ dependencies.A.outputs['abstractVariable'] ]
-  steps:
-  - script: echo $(varFromA) # this step uses the mapped-in variable
+
 
 
